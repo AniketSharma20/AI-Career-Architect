@@ -9,7 +9,9 @@ import {
 import html2pdf from 'html2pdf.js';
 import './index.css';
 
-const MOCK_API = "http://localhost:5000/api/generate-roadmap";
+// In production (Vercel), the Flask backend isn't available, so the catch
+// block below will automatically fall back to local mock data.
+const MOCK_API = import.meta.env.VITE_API_URL || "http://localhost:5000/api/generate-roadmap";
 
 // ─── Pomodoro Timer Component ───────────────────────────────────────────────
 function PomodoroTimer({ moduleId }) {

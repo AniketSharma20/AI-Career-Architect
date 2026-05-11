@@ -1,15 +1,9 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "app.py",
-      "use": "@vercel/python"
-    }
-  ],
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "outputDirectory": "frontend/dist",
+  "framework": "vite",
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/app.py"
-    }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
