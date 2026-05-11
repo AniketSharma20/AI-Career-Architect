@@ -1,8 +1,15 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-from models import db, User, Roadmap
-from ai_service import generate_ai_roadmap
+import sys
 import os
+
+# Ensure the backend directory is always on the Python path so that
+# local modules (models, ai_service) are found by both the
+# Python runtime AND static-analysis tools (Pyrefly / Pylance).
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from flask import Flask, request, jsonify  # noqa: E402
+from flask_cors import CORS               # noqa: E402
+from models import db, User, Roadmap      # noqa: E402
+from ai_service import generate_ai_roadmap  # noqa: E402
 
 app = Flask(__name__)
 CORS(app)
@@ -28,10 +35,8 @@ def generate_roadmap():
         return jsonify({'error': 'Missing required fields'}), 400
 
     try:
-        # Call the AI service to generate the roadmap
         roadmap_data = generate_ai_roadmap(skills, target_role, timeline)
         
-        # Optionally, save it to the database here (ignoring user_id for now as it's not authenticated)
         new_roadmap = Roadmap(
             target_role=target_role,
             timeline=timeline,
@@ -60,7 +65,7 @@ def get_roadmap(roadmap_id):
         'target_role': roadmap.target_role,
         'timeline': roadmap.timeline,
         'data': roadmap.roadmap_json,
-        'created_at': roadmap.created_at
+        'created_at': str(roadmap.created_at)
     })
 
 if __name__ == '__main__':
