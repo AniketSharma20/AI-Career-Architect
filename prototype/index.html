@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Career Roadmap Generator</title>
+    <meta name="description" content="Generate a dynamic, personalized career roadmap using AI.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <main class="container">
+        <!-- Input Section -->
+        <section id="input-section" class="glass-panel slide-up">
+            <header class="header">
+                <div class="logo">
+                    <i class="fa-solid fa-route"></i>
+                    <h1>AI Career Architect</h1>
+                </div>
+                <p>Design your personalized path to industry readiness.</p>
+            </header>
+
+            <form id="roadmap-form" class="form-grid">
+                <div class="input-group">
+                    <label for="current-skills">Current Skills <span class="tooltip" title="e.g., HTML, CSS, Basic Python"><i class="fa-solid fa-circle-info"></i></span></label>
+                    <input type="text" id="current-skills" placeholder="e.g., HTML, CSS, JavaScript" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="target-role">Target Role</label>
+                    <input type="text" id="target-role" placeholder="e.g., Frontend Developer" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="timeline">Timeline (Months)</label>
+                    <input type="number" id="timeline" min="1" max="24" placeholder="e.g., 6" required>
+                </div>
+
+                <button type="submit" class="btn-primary" id="generate-btn">
+                    <span>Generate Roadmap</span>
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </button>
+            </form>
+
+            <div id="loading-spinner" class="hidden">
+                <div class="spinner"></div>
+                <p>AI is crafting your perfect path...</p>
+            </div>
+        </section>
+
+        <!-- Output Section -->
+        <section id="output-section" class="hidden">
+            <div class="output-actions">
+                <button id="export-pdf-btn" class="btn-secondary">
+                    <i class="fa-solid fa-file-pdf"></i> Export as PDF
+                </button>
+                <button id="reset-btn" class="btn-outline">
+                    <i class="fa-solid fa-rotate-left"></i> Start Over
+                </button>
+            </div>
+
+            <!-- Content to be exported as PDF -->
+            <div id="pdf-content" class="pdf-container">
+                <div class="roadmap-header">
+                    <h2 id="roadmap-title">Roadmap to [Target Role]</h2>
+                    <p id="roadmap-subtitle">Estimated Timeline: [X] Months</p>
+                </div>
+
+                <!-- Skill Gap Analysis -->
+                <div class="skill-gap-card glass-panel">
+                    <h3><i class="fa-solid fa-magnifying-glass-chart"></i> Skill Gap Analysis</h3>
+                    <div class="gap-content">
+                        <div class="skills-list">
+                            <h4>Current Skills</h4>
+                            <div id="current-skills-tags" class="tags-container"></div>
+                        </div>
+                        <div class="skills-list">
+                            <h4>Missing Skills (To Learn)</h4>
+                            <div id="missing-skills-tags" class="tags-container missing"></div>
+                        </div>
+                    </div>
+                    <p id="skill-summary" class="summary-text"></p>
+                </div>
+
+                <!-- Vertical Timeline UI -->
+                <div class="timeline-container">
+                    <h3 class="timeline-title">Your Step-by-Step Path</h3>
+                    <div id="timeline" class="timeline">
+                        <!-- Timeline items will be injected here via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- External Libraries -->
+    <!-- html2pdf for exporting PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <!-- Scripts -->
+    <script src="mockData.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
