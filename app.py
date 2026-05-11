@@ -4,7 +4,7 @@ import os
 # Ensure the backend directory is always on the Python path so that
 # local modules (models, ai_service) are found by both the
 # Python runtime AND static-analysis tools (Pyrefly / Pylance).
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'backend'))
 
 from flask import Flask, request, jsonify  # noqa: E402
 from flask_cors import CORS               # noqa: E402
